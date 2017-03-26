@@ -1,7 +1,7 @@
-import mymod
+import mypkg.mymod as mymod
 
 print(mymod.test('myclient.py'))
 
-from mymod import test
+from mypkg.mymod import countLines
 
-print(test('myclient.py'))
+print(countLines('myclient.py'))
