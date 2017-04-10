@@ -3,7 +3,7 @@
 
 class ListInstance:
     """
-    Mix-in class that provides a formatted print() or str() of instances via 
+    Mix-in class that provides a formatted print() or str() of instances via
     inheritance of __str__ coded here;  displays instance attrs only;  self is
     instance of lowest class; __X names avoid clashing with client's attrs
     """
@@ -14,11 +14,12 @@ class ListInstance:
         return result
 
     def __str__(self):
-        return '<Instance of %s, address %s:\n%s>' % (
+        return '<Instance of %s(%s), address %s:\n%s>' % (
                            self.__class__.__name__,         # My class's name
+                           ', '.join([c.__name__ for c in self.__class__.__bases__]),
                            id(self),                        # My address
                            self.__attrnames())              # name=value list
 
-if __name__ == '__main__': 
+if __name__ == '__main__':
     import testmixin
     testmixin.tester(ListInstance)

@@ -3,10 +3,10 @@
 
 class ListInherited:
     """
-    Use dir() to collect both instance attrs and names inherited from 
-    its classes;  Python 3.X shows more names than 2.X because of the 
-    implied object superclass in the new-style class model;  getattr() 
-    fetches inherited names not in self.__dict__;  use __str__, not 
+    Use dir() to collect both instance attrs and names inherited from
+    its classes;  Python 3.X shows more names than 2.X because of the
+    implied object superclass in the new-style class model;  getattr()
+    fetches inherited names not in self.__dict__;  use __str__, not
     __repr__, or else this loops when printing bound methods!
     """
     def __attrnames(self):
@@ -19,11 +19,12 @@ class ListInherited:
         return result
 
     def __str__(self):
-        return '<Instance of %s, address %s:\n%s>' % (
+        return '<Instance of %s(%s), address %s:\n%s>' % (
                            self.__class__.__name__,         # My class's name
+                           ', '.join([c.__name__ for c in self.__class__.__bases__]),
                            id(self),                        # My address
                            self.__attrnames())              # name=value list
 
-if __name__ == '__main__': 
+if __name__ == '__main__':
     import testmixin
     testmixin.tester(ListInherited)
