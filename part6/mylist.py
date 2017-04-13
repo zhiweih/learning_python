@@ -1,6 +1,6 @@
 class MyList:
     def __init__(self, data):
-        self.data = data
+        self.data = list(data)
 
     def __add__(self, other):
         return self.data + other

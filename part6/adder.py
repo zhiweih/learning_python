@@ -17,9 +17,14 @@ class ListAdder(Adder):
     def add(self, x, y):
         return x + y
 
+"""
+This won't work for 2 DictAdder instances.
+"""
 class DictAdder(Adder):
     def __init__(self, data):
         Adder.__init__(self, data)
 
     def add(self, x, y):
-        return {k:x.get(k, y.get(k)) for k in set(x.keys()) | set(y.keys())}
+        res = x.copy()
+        res.update(y)
+        return res
